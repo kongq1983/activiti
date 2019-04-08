@@ -12,6 +12,13 @@
     <groupId>com.kq</groupId>
     <artifactId>simple</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+        </dependency>
+    </dependencies>
+
 
     <build>
         <plugins>
