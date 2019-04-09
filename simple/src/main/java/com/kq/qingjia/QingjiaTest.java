@@ -1,6 +1,7 @@
 package com.kq.qingjia;
 
 import org.activiti.engine.*;
+import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -17,8 +18,20 @@ import java.util.Map;
 public class QingjiaTest {
 
     public static void main(String[] args) {
-        ProcessEngine processEngine = ProcessEngineConfiguration.createStandaloneInMemProcessEngineConfiguration()
-                .buildProcessEngine();
+//        ProcessEngine processEngine = ProcessEngineConfiguration.createStandaloneInMemProcessEngineConfiguration()
+//                .buildProcessEngine();
+
+        String url = "jdbc:mysql://localhost:3306/activiti?characterEncoding=UTF-8&serverTimezone=GMT&useSSL=false";
+
+
+        ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
+                .setJdbcUrl(url)
+                .setJdbcUsername("root")
+                .setJdbcPassword("123456")
+                .setJdbcDriver("com.mysql.cj.jdbc.Driver");
+//                .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+
+        ProcessEngine processEngine = cfg.buildProcessEngine();
 
         RepositoryService repositoryService = processEngine.getRepositoryService();
         repositoryService.createDeployment().addClasspathResource("qingjia.bpmn20.xml").deploy();
@@ -50,6 +63,7 @@ public class QingjiaTest {
         long count = historyService.createHistoricProcessInstanceQuery().finished().count();
 
         System.out.println("count="+count);
+
 
     }
 
