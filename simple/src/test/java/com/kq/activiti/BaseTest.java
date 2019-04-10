@@ -14,6 +14,9 @@ import org.junit.Test;
  */
 public class BaseTest {
 
+    protected String userId = "mytest";
+    protected String groupId = "testGroup";
+
     @Rule
     public ActivitiRule ar = new ActivitiRule();
 
@@ -23,6 +26,16 @@ public class BaseTest {
     public void before(){
         is = ar.getIdentityService();
     }
+
+    protected void clear(){
+        is.deleteUser(userId);
+        is.deleteGroup(groupId);
+        is.deleteMembership(userId,groupId);
+    }
+
+
+
+
 
 
 }

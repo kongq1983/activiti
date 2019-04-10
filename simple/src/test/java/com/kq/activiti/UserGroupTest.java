@@ -16,9 +16,6 @@ import static org.junit.Assert.*;
  */
 public class UserGroupTest extends BaseTest{
 
-    private String userId = "mytest";
-    private String groupId = "testGroup";
-
 
     @Before
     public void before(){
@@ -27,11 +24,7 @@ public class UserGroupTest extends BaseTest{
     }
 
 
-    private void clear(){
-        is.deleteUser(userId);
-        is.deleteGroup(groupId);
-        is.deleteMembership(userId,groupId);
-    }
+
 
     @After
     public void after(){
