@@ -60,7 +60,9 @@ public class DeployTest extends BaseTest{
     }
 
 
-
+    /**
+     * zip 部署
+     */
     @Test
     public void testDeployByzip(){
         InputStream in = OnboardingRequest.class.getResourceAsStream("/process.zip");
