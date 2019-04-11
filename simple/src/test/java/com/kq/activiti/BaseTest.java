@@ -20,7 +20,7 @@ public class BaseTest {
     @Rule
     public ActivitiRule ar = new ActivitiRule();
 
-    IdentityService is;
+    protected IdentityService is;
 
     @Before
     public void before(){

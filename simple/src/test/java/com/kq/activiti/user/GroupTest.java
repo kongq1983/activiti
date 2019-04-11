@@ -1,6 +1,7 @@
-package com.kq.activiti;
+package com.kq.activiti.user;
 
 
+import com.kq.activiti.BaseTest;
 import org.activiti.engine.identity.Group;
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @author kq
  * @date 2019-04-10
  */
-public class GroupTest extends BaseTest{
+public class GroupTest extends BaseTest {
 
 
     @Test

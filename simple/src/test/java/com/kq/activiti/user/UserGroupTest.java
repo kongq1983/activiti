@@ -1,5 +1,6 @@
-package com.kq.activiti;
+package com.kq.activiti.user;
 
+import com.kq.activiti.BaseTest;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.User;
 import org.junit.After;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
  * @author kq
  * @date 2019-04-10
  */
-public class UserGroupTest extends BaseTest{
+public class UserGroupTest extends BaseTest {
 
 
     @Before

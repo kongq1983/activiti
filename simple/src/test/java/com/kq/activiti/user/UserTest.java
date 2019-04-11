@@ -1,4 +1,4 @@
-package com.kq.activiti;
+package com.kq.activiti.user;
 
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.User;

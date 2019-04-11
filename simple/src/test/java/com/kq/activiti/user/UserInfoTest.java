@@ -1,5 +1,6 @@
-package com.kq.activiti;
+package com.kq.activiti.user;
 
+import com.kq.activiti.BaseTest;
 import org.activiti.engine.identity.User;
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
  * @author kq
  * @date 2019-04-10
  */
-public class UserInfoTest extends BaseTest{
+public class UserInfoTest extends BaseTest {
 
     public void before(){
         super.before();
