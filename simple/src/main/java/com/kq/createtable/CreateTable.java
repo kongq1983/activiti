@@ -1,5 +1,6 @@
 package com.kq.createtable;
 
+import com.kq.config.Config;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
@@ -13,7 +14,7 @@ import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
  */
 public class CreateTable {
 
-    static String url = "jdbc:mysql://localhost:3306/activiti?characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT&useSSL=false";
+
 
     /**
      * 注意: nullCatalogMeansCurrent=true
@@ -21,7 +22,7 @@ public class CreateTable {
      */
     public static void main(String[] args) {
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
-                .setJdbcUrl(url)
+                .setJdbcUrl(Config.url)
                 .setJdbcUsername("root")
                 .setJdbcPassword("123456")
                 .setJdbcDriver("com.mysql.cj.jdbc.Driver")

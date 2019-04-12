@@ -50,7 +50,7 @@ public class DeployTest extends BaseTest{
 
         try(InputStream in = OnboardingRequest.class.getResourceAsStream("/qingjia.bpmn20.xml");){
             Deployment deployment =
-                    repositoryService.createDeployment().name("请假流程1").addInputStream("qingjia.bpmn20.xml",in).deploy();
+                    repositoryService.createDeployment().name("请假流程1").key("qingjia").tenantId("1").addInputStream("qingjia.bpmn20.xml",in).deploy();
             System.out.println("部署ID："+deployment.getId());//1
             System.out.println("部署时间："+deployment.getDeploymentTime());
         }
