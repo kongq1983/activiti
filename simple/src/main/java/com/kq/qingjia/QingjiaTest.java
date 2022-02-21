@@ -36,7 +36,8 @@ public class QingjiaTest {
         RepositoryService repositoryService = processEngine.getRepositoryService();
         repositoryService.createDeployment().addClasspathResource("qingjia.bpmn20.xml").deploy();
 
-        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().singleResult();
+//        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().singleResult();
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().latestVersion().singleResult();
         System.out.println("key="+processDefinition.getKey());
 
         RuntimeService runtimeService = processEngine.getRuntimeService();
