@@ -1,5 +1,6 @@
 package com.kq.qingjia;
 
+import com.kq.config.Config;
 import org.activiti.engine.*;
 import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.activiti.engine.repository.ProcessDefinition;
@@ -10,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 这个是全新的一套
  * QingjiaTest
  *
  * @author kq
@@ -21,7 +23,9 @@ public class QingjiaTest {
 //        ProcessEngine processEngine = ProcessEngineConfiguration.createStandaloneInMemProcessEngineConfiguration()
 //                .buildProcessEngine();
 
-        String url = "jdbc:mysql://localhost:3306/activiti?characterEncoding=UTF-8&serverTimezone=GMT&useSSL=false";
+//        String url = "jdbc:mysql://localhost:3306/activiti?characterEncoding=UTF-8&serverTimezone=GMT&useSSL=false";
+
+        String url = Config.url;
 
 
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
@@ -37,6 +41,7 @@ public class QingjiaTest {
         repositoryService.createDeployment().addClasspathResource("qingjia.bpmn20.xml").deploy();
 
 //        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().singleResult();
+        // 取最新1个版本
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().latestVersion().singleResult();
         System.out.println("key="+processDefinition.getKey());
 

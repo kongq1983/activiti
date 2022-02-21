@@ -12,7 +12,7 @@ import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
  */
 public class Config {
 
-    public static String url = "jdbc:mysql://localhost:3306/activiti?characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT&useSSL=false";
+    public static String url = "jdbc:mysql://localhost:3306/activiti1?characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT&useSSL=false";
 
     public static ProcessEngineConfiguration getConfiguration(){
 

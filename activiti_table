@@ -1,0 +1,70 @@
+
+https://www.devdoc.cn/activiti-table-act_ru_task.html
+
+ACT_HI开头  (历史表)
+
+ACT_HI_ACTINST (历史表)
+
+ACT_RE_PROCDEF (流程定义)
+
+ACT_RE_DEPLOYMENT (流程部署)
+
+ACT_RU_VARIABLE (流程-节点-变量)  ACT_HI_ACTINST的id
+
+ACT_RU_EXECUTION (流程执行)
+
+ACT_RU_TASK (待办任务)  运行时任务节点表
+
+ACT_HI_TASKINST (历史任务)
+
+ACT_RU_IDENTITYLINK  运行时流程人员表( act_ru_identitylink )   任务参与者数据表。主要存储当前节点参与者的信息
+
+
+
+
+CREATE DATABASE IF NOT EXISTS activiti1  DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+
+
+
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTask  - ==>  Preparing: select * from ACT_RU_TASK where ID_ = ?
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTask  - ==> Parameters: 30005(String)
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTask  - <==      Total: 1
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl.selectExecution  - ==>  Preparing: select * from ACT_RU_EXECUTION where ID_ = ?
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl.selectExecution  - ==> Parameters: 30002(String)
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl.selectExecution  - <==      Total: 1
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.VariableInstanceEntityImpl.selectVariablesByExecutionId  - ==>  Preparing: select * from ACT_RU_VARIABLE where EXECUTION_ID_ = ? and TASK_ID_ is null
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.VariableInstanceEntityImpl.selectVariablesByExecutionId  - ==> Parameters: 30002(String)
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.VariableInstanceEntityImpl.selectVariablesByExecutionId  - <==      Total: 0
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl.selectExecution  - ==>  Preparing: select * from ACT_RU_EXECUTION where ID_ = ?
+11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl.selectExecution  - ==> Parameters: 30001(String)
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl.selectExecution  - <==      Total: 1
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.VariableInstanceEntityImpl.selectVariablesByExecutionId  - ==>  Preparing: select * from ACT_RU_VARIABLE where EXECUTION_ID_ = ? and TASK_ID_ is null
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.VariableInstanceEntityImpl.selectVariablesByExecutionId  - ==> Parameters: 30001(String)
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.VariableInstanceEntityImpl.selectVariablesByExecutionId  - <==      Total: 0
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager  - Current history level: AUDIT, level required: ACTIVITY
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager  - Current history level: AUDIT, level required: FULL
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTasksByParentTaskId  - ==>  Preparing: select * from ACT_RU_TASK where PARENT_TASK_ID_ = ?
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTasksByParentTaskId  - ==> Parameters: 30005(String)
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTasksByParentTaskId  - <==      Total: 0
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntityImpl.selectIdentityLinksByTask  - ==>  Preparing: select * from ACT_RU_IDENTITYLINK where TASK_ID_ = ?
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntityImpl.selectIdentityLinksByTask  - ==> Parameters: 30005(String)
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntityImpl.selectIdentityLinksByTask  - <==      Total: 1
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.VariableInstanceEntityImpl.selectVariablesByTaskId  - ==>  Preparing: select * from ACT_RU_VARIABLE where TASK_ID_ = ?
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.VariableInstanceEntityImpl.selectVariablesByTaskId  - ==> Parameters: 30005(String)
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.VariableInstanceEntityImpl.selectVariablesByTaskId  - <==      Total: 0
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager  - Current history level: AUDIT, level required: AUDIT
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntityImpl.selectHistoricTaskInstance  - ==>  Preparing: select * from ACT_HI_TASKINST where ID_ = ?
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntityImpl.selectHistoricTaskInstance  - ==> Parameters: 30005(String)
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntityImpl.selectHistoricTaskInstance  - <==      Total: 1
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.agenda.DefaultActivitiEngineAgenda  - Operation class org.activiti.engine.impl.agenda.TriggerExecutionOperation added to agenda
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.interceptor.CommandInvoker  - Executing operation class org.activiti.engine.impl.agenda.TriggerExecutionOperation
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTasksByExecutionId  - ==>  Preparing: select distinct T.* from ACT_RU_TASK T where T.EXECUTION_ID_ = ?
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTasksByExecutionId  - ==> Parameters: 30002(String)
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTasksByExecutionId  - <==      Total: 1
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.agenda.DefaultActivitiEngineAgenda  - Operation class org.activiti.engine.impl.agenda.TakeOutgoingSequenceFlowsOperation added to agenda
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.interceptor.CommandInvoker  - Executing operation class org.activiti.engine.impl.agenda.TakeOutgoingSequenceFlowsOperation
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager  - Current history level: AUDIT, level required: ACTIVITY
+11:24:09,811 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntityImpl.selectUnfinishedHistoricActivityInstanceExecutionIdAndActivityId  - ==>  Preparing: select * from ACT_HI_ACTINST RES where EXECUTION_ID_ = ? and ACT_ID_ = ? and END_TIME_ is null
+11:24:09,821 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntityImpl.selectUnfinishedHistoricActivityInstanceExecutionIdAndActivityId  - ==> Parameters: 30002(String), deptLeaderAudit(String)
+11:24:09,821 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntityImpl.selectUnfinishedHistoricActivityInstanceExecutionIdAndActivityId  - <==      Total: 1
