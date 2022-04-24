@@ -13,7 +13,7 @@ public class MyTaskListener implements TaskListener {
 
     @Override
     public void notify(DelegateTask delegateTask) {
-        System.out.println(delegateTask.getEventName());
+        System.out.println("MyTaskListener:"+delegateTask.getEventName());
         if ("assignment".equals(delegateTask.getEventName())) {
             System.out.println("代理人" + delegateTask.getAssignee());
             System.out.println("参与者数量" + delegateTask.getCandidates().size());

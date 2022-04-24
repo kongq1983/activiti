@@ -15,24 +15,24 @@
    <process  id="order_process" isClosed="false" isExecutable="true"
             processType="None">
       <endEvent id="_end" name="结束"/>
-      <userTask activiti:exclusive="true" id="_submit" name="提交">
+      <userTask activiti:exclusive="true" id="_submit" name="提交" activiti:assignee="${loginUser}">
+         <extensionElements>
+            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create" />
+         </extensionElements>
+      </userTask>
+      <userTask activiti:exclusive="true" id="_pay" name="支付" activiti:assignee="${loginUser}">
          <extensionElements>
             <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
          </extensionElements>
       </userTask>
-      <userTask activiti:exclusive="true" id="_pay" name="支付">
-         <extensionElements>
-            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
-         </extensionElements>
-      </userTask>
-      <userTask activiti:exclusive="true" id="_sign" name="签收">
+      <userTask activiti:exclusive="true" id="_sign" name="签收" activiti:assignee="${loginUser}">
          <extensionElements>
             <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
          </extensionElements>
       </userTask>
       <sequenceFlow id="_8" sourceRef="_submit" targetRef="_pay"/>
       <sequenceFlow id="_9" sourceRef="_pay" targetRef="_sign"/>
-      <userTask activiti:exclusive="true" id="_cancel" name="取消">
+      <userTask activiti:exclusive="true" id="_cancel" name="取消" activiti:assignee="${loginUser}">
          <extensionElements>
             <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
          </extensionElements>

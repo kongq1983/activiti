@@ -14,7 +14,7 @@ import java.util.Map;
  * @date 2022-04-24 14:10
  * @since 2020-0630
  */
-public class OrderTest {
+public class OrderStartProcessorTest {
 
 
     public static void main(String[] args) {
@@ -27,9 +27,9 @@ public class OrderTest {
 
         RuntimeService runtimeService = processEngine.getRuntimeService();
         // 开始流程
-//        startProcess("order_process","order:1",runtimeService,identityService);
+        startProcess("order_process","order:1",runtimeService,identityService);
 
-        dealTask(processEngine);
+//        dealTask(processEngine);
 
     }
 
@@ -38,13 +38,14 @@ public class OrderTest {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "101");
         //设置办理人、候选人、候选组
-        map.put("assigneeUserId", "king");
+        map.put("loginUser", "king");
+        map.put("assigneeUserId", "guest");
         map.put("candidateUsers", "test1,test2");
         map.put("candidateGroups", "group1,group2");
         ProcessInstance processInstance = null;
         try {
             // 用来设置启动流程的人员ID，引擎会自动把用户ID保存到activiti:initiator中
-            identityService.setAuthenticatedUserId("admin1");
+            identityService.setAuthenticatedUserId("admin");
             //  ACT_RU_EXECUTION ACT_RU_TASK
             processInstance = runtimeService.startProcessInstanceByKey(key, bussinessId, map);
             System.out.println("pid="+processInstance.getId()+"  pdid="+processInstance.getProcessDefinitionId());

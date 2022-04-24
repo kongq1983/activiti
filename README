@@ -1,0 +1,4 @@
+
+环境变量设置 place=home
+
+CREATE DATABASE IF NOT EXISTS `activiti` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
