@@ -12,57 +12,73 @@
              name=""
              targetNamespace="http://www.activiti.org/test"
              typeLanguage="http://www.w3.org/2001/XMLSchema">
-   <process id="myProcess_1" isClosed="false" isExecutable="true"
+   <process  id="order_process" isClosed="false" isExecutable="true"
             processType="None">
-      <endEvent id="_3" name="结束"/>
-      <userTask activiti:exclusive="true" id="_4" name="提交"/>
-      <userTask activiti:exclusive="true" id="_5" name="支付"/>
-      <userTask activiti:exclusive="true" id="_6" name="签收"/>
-      <sequenceFlow id="_8" sourceRef="_4" targetRef="_5"/>
-      <sequenceFlow id="_9" sourceRef="_5" targetRef="_6"/>
-      <userTask activiti:exclusive="true" id="_10" name="取消"/>
-      <sequenceFlow id="_11" sourceRef="_4" targetRef="_10"/>
-      <sequenceFlow id="_7" sourceRef="_6" targetRef="_3"/>
-      <sequenceFlow id="_12" sourceRef="_10" targetRef="_3"/>
-      <startEvent id="_2" name="开始"/>
-      <sequenceFlow id="_13" sourceRef="_2" targetRef="_4"/>
+      <endEvent id="_end" name="结束"/>
+      <userTask activiti:exclusive="true" id="_submit" name="提交">
+         <extensionElements>
+            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
+         </extensionElements>
+      </userTask>
+      <userTask activiti:exclusive="true" id="_pay" name="支付">
+         <extensionElements>
+            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
+         </extensionElements>
+      </userTask>
+      <userTask activiti:exclusive="true" id="_sign" name="签收">
+         <extensionElements>
+            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
+         </extensionElements>
+      </userTask>
+      <sequenceFlow id="_8" sourceRef="_submit" targetRef="_pay"/>
+      <sequenceFlow id="_9" sourceRef="_pay" targetRef="_sign"/>
+      <userTask activiti:exclusive="true" id="_cancel" name="取消">
+         <extensionElements>
+            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
+         </extensionElements>
+      </userTask>
+      <sequenceFlow id="_11" sourceRef="_submit" targetRef="_cancel"/>
+      <sequenceFlow id="_7" sourceRef="_sign" targetRef="_end"/>
+      <sequenceFlow id="_12" sourceRef="_cancel" targetRef="_end"/>
+      <startEvent id="_start" name="开始"/>
+      <sequenceFlow id="_13" sourceRef="_start" targetRef="_submit"/>
    </process>
    <bpmndi:BPMNDiagram xmlns=""
                        documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0"
                        id="Diagram-_1"
                        name="New Diagram">
-      <bpmndi:BPMNPlane bpmnElement="myProcess_1">
-         <bpmndi:BPMNShape bpmnElement="_3" id="Shape-_3">
+      <bpmndi:BPMNPlane bpmnElement="order_process">
+         <bpmndi:BPMNShape bpmnElement="_end" id="Shape-_end">
             <omgdc:Bounds height="32.0" width="32.0" x="220.0" y="675.0"/>
             <bpmndi:BPMNLabel>
                <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
             </bpmndi:BPMNLabel>
          </bpmndi:BPMNShape>
-         <bpmndi:BPMNShape bpmnElement="_4" id="Shape-_4">
+         <bpmndi:BPMNShape bpmnElement="_submit" id="Shape-_submit">
             <omgdc:Bounds height="55.0" width="85.0" x="185.0" y="245.0"/>
             <bpmndi:BPMNLabel>
                <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
             </bpmndi:BPMNLabel>
          </bpmndi:BPMNShape>
-         <bpmndi:BPMNShape bpmnElement="_5" id="Shape-_5">
+         <bpmndi:BPMNShape bpmnElement="_pay" id="Shape-_pay">
             <omgdc:Bounds height="55.0" width="85.0" x="185.0" y="390.0"/>
             <bpmndi:BPMNLabel>
                <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
             </bpmndi:BPMNLabel>
          </bpmndi:BPMNShape>
-         <bpmndi:BPMNShape bpmnElement="_6" id="Shape-_6">
+         <bpmndi:BPMNShape bpmnElement="_sign" id="Shape-_sign">
             <omgdc:Bounds height="55.0" width="85.0" x="190.0" y="520.0"/>
             <bpmndi:BPMNLabel>
                <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
             </bpmndi:BPMNLabel>
          </bpmndi:BPMNShape>
-         <bpmndi:BPMNShape bpmnElement="_10" id="Shape-_10">
+         <bpmndi:BPMNShape bpmnElement="_cancel" id="Shape-_cancel">
             <omgdc:Bounds height="55.0" width="85.0" x="370.0" y="395.0"/>
             <bpmndi:BPMNLabel>
                <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
             </bpmndi:BPMNLabel>
          </bpmndi:BPMNShape>
-         <bpmndi:BPMNShape bpmnElement="_2" id="Shape-_2">
+         <bpmndi:BPMNShape bpmnElement="_start" id="Shape-_start">
             <omgdc:Bounds height="32.0" width="32.0" x="210.0" y="130.0"/>
             <bpmndi:BPMNLabel>
                <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
