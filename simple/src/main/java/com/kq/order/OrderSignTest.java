@@ -3,6 +3,7 @@ package com.kq.order;
 import com.kq.config.Config;
 import com.kq.util.UserUtil;
 import org.activiti.engine.*;
+import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class OrderSignTest {
 //        List<Task> submitTasks = taskService.createTaskQuery().taskAssignee("admin").list();
 
         // 签收
-        List<Task> submitTasks =  taskService.createTaskQuery().processInstanceId("5001").taskCandidateOrAssigned("king").list();
+        List<Task> submitTasks =  taskService.createTaskQuery().processInstanceId("32501").taskCandidateOrAssigned("king").list();
         System.out.println("loadTask "+submitTasks);
 //        Task submitTask = taskService.createTaskQuery().taskCandidateGroup("1").singleResult();
 
@@ -56,6 +57,8 @@ public class OrderSignTest {
             }
 
         }
+
+        ProcessInstance processInstance = null; //processEngine.getRuntimeService().getp
 
 
     }

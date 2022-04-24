@@ -46,7 +46,7 @@ public class OrderPayTest {
 //        List<Task> submitTasks = taskService.createTaskQuery().taskAssignee("admin").list();
 
         // 支付或取消
-        List<Task> submitTasks =  taskService.createTaskQuery().processInstanceId("5001").taskCandidateOrAssigned("king").list();
+        List<Task> submitTasks =  taskService.createTaskQuery().processInstanceId("32501").taskCandidateOrAssigned("king").list();
         System.out.println("loadTask "+submitTasks);
 //        Task submitTask = taskService.createTaskQuery().taskCandidateGroup("1").singleResult();
 
@@ -55,7 +55,7 @@ public class OrderPayTest {
             System.out.println(task.getId() + ":" + task.getTaskDefinitionKey());
 
             if(task.getName().equals("支付")) {
-                taskService.complete(task.getId(), UserUtil.getUerMap());
+                taskService.complete(task.getId(),  UserUtil.getUerMap("king","pay"));
                 break;
             }
 

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:tns="http://www.activiti.org/test"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             id="m1650770898264"
+             name=""
+             targetNamespace="http://www.activiti.org/test"
+             typeLanguage="http://www.w3.org/2001/XMLSchema">
+   <process  id="order_process-condition-1" isClosed="false" isExecutable="true"
+            processType="None">
+      <endEvent id="_end" name="结束"/>
+      <userTask activiti:exclusive="true" id="_submit" name="提交" activiti:assignee="${loginUser}">
+         <extensionElements>
+            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create" />
+         </extensionElements>
+      </userTask>
+      <userTask activiti:exclusive="true" id="_pay" name="支付" activiti:assignee="${loginUser}">
+         <extensionElements>
+            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
+         </extensionElements>
+      </userTask>
+      <userTask activiti:exclusive="true" id="_sign" name="签收" activiti:assignee="${loginUser}">
+         <extensionElements>
+            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
+         </extensionElements>
+      </userTask>
+      <sequenceFlow id="_8" sourceRef="_submit" targetRef="_pay">
+
+      </sequenceFlow>
+      <sequenceFlow id="_9" sourceRef="_pay" targetRef="_sign">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome=='pay'}]]></conditionExpression>
+      </sequenceFlow>
+      <userTask activiti:exclusive="true" id="_cancel" name="取消" activiti:assignee="${loginUser}">
+         <extensionElements>
+            <activiti:taskListener class="com.kq.common.MyTaskListener" event="create"/>
+         </extensionElements>
+      </userTask>
+      <sequenceFlow id="_11" sourceRef="_submit" targetRef="_cancel">
+
+      </sequenceFlow>
+      <sequenceFlow id="_7" sourceRef="_sign" targetRef="_end"/>
+      <sequenceFlow id="_12" sourceRef="_cancel" targetRef="_end">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome=='cancel'}]]></conditionExpression>
+      </sequenceFlow>
+      <startEvent id="_start" name="开始"/>
+      <sequenceFlow id="_13" sourceRef="_start" targetRef="_submit"/>
+   </process>
+   <bpmndi:BPMNDiagram xmlns=""
+                       documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0"
+                       id="Diagram-_1"
+                       name="New Diagram">
+      <bpmndi:BPMNPlane bpmnElement="order_process">
+         <bpmndi:BPMNShape bpmnElement="_end" id="Shape-_end">
+            <omgdc:Bounds height="32.0" width="32.0" x="220.0" y="675.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="_submit" id="Shape-_submit">
+            <omgdc:Bounds height="55.0" width="85.0" x="185.0" y="245.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="_pay" id="Shape-_pay">
+            <omgdc:Bounds height="55.0" width="85.0" x="185.0" y="390.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="_sign" id="Shape-_sign">
+            <omgdc:Bounds height="55.0" width="85.0" x="190.0" y="520.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="_cancel" id="Shape-_cancel">
+            <omgdc:Bounds height="55.0" width="85.0" x="370.0" y="395.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="_start" id="Shape-_start">
+            <omgdc:Bounds height="32.0" width="32.0" x="210.0" y="130.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNEdge bpmnElement="_13" id="BPMNEdge__13" sourceElement="_2" targetElement="_4">
+            <omgdi:waypoint x="226.0" y="162.0"/>
+            <omgdi:waypoint x="226.0" y="245.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="_12" id="BPMNEdge__12" sourceElement="_10" targetElement="_3">
+            <omgdi:waypoint x="410.0" y="450.0"/>
+            <omgdi:waypoint x="410.0" y="580.0"/>
+            <omgdi:waypoint x="252.0" y="691.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="_7" id="BPMNEdge__7" sourceElement="_6" targetElement="_3">
+            <omgdi:waypoint x="236.0" y="575.0"/>
+            <omgdi:waypoint x="236.0" y="675.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="_4" targetElement="_5">
+            <omgdi:waypoint x="227.5" y="300.0"/>
+            <omgdi:waypoint x="227.5" y="390.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="_9" id="BPMNEdge__9" sourceElement="_5" targetElement="_6">
+            <omgdi:waypoint x="230.0" y="445.0"/>
+            <omgdi:waypoint x="230.0" y="520.0"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="_11" id="BPMNEdge__11" sourceElement="_4" targetElement="_10">
+            <omgdi:waypoint x="270.0" y="272.5"/>
+            <omgdi:waypoint x="370.0" y="422.5"/>
+            <bpmndi:BPMNLabel>
+               <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+   </bpmndi:BPMNDiagram>
+</definitions>

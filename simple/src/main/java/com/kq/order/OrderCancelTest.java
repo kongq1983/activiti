@@ -51,7 +51,7 @@ public class OrderCancelTest {
             System.out.println(task.getId() + ":" + task.getTaskDefinitionKey());
 
             if(task.getName().equals("取消")) {
-                taskService.complete(task.getId(), UserUtil.getUerMap());
+                taskService.complete(task.getId(),  UserUtil.getUerMap("king","cancel"));
                 break;
             }
 
