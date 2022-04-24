@@ -39,12 +39,12 @@ public class OrderSubmitTest {
 
 
 
-        List<Task> submitTasks = taskService.createTaskQuery().taskCandidateOrAssigned("king").list();
+        List<Task> submitTasks = taskService.createTaskQuery().processInstanceId("20001").taskCandidateOrAssigned("king").list();
 //        Task submitTask = taskService.createTaskQuery().taskCandidateGroup("1").singleResult();
         for(Task task : submitTasks) {
             System.out.println(task.getId() + ":" + task.getTaskDefinitionKey());
 
-//            taskService.complete(task.getId(), UserUtil.getUerMap());
+            taskService.complete(task.getId(), UserUtil.getUerMap("king","pay"));
 
         }
     }

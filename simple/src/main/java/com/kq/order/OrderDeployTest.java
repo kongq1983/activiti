@@ -18,7 +18,8 @@ public class OrderDeployTest {
         ProcessEngine processEngine = cfg.buildProcessEngine();
 
         RepositoryService repositoryService = processEngine.getRepositoryService();
-        repositoryService.createDeployment().addClasspathResource("order.bpmn20.xml").deploy();
+//        repositoryService.createDeployment().addClasspathResource("order.bpmn20.xml").deploy();
+        repositoryService.createDeployment().addClasspathResource("order-condition.bpmn20.xml").deploy();
 //        repositoryService.createDeployment().addClasspathResource("order.bpmn20.xml").deploy();
 
 
