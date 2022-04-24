@@ -59,7 +59,7 @@ public class QingjiaAssigneeTest {
 
             RuntimeService runtimeService = processEngine.getRuntimeService();
 
-            variables.put("applyUser", "king");
+            variables.put("applyUser", "king"); // ACT_RU_VARIABLE
             variables.put("days", 3);
 
             ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("qingjia", variables);

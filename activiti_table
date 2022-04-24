@@ -24,8 +24,15 @@ ACT_RU_IDENTITYLINK  运行时流程人员表( act_ru_identitylink )   任务参
 
 CREATE DATABASE IF NOT EXISTS activiti1  DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
+40:园区
 
+S_ROLE_ORGANIZATION
 
+S_USER_ROLE
+
+S_ROLE_AUTHORITY
+
+S_AUTHORITY_ACTIONS
 
 11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTask  - ==>  Preparing: select * from ACT_RU_TASK where ID_ = ?
 11:24:09,801 [main] DEBUG org.activiti.engine.impl.persistence.entity.TaskEntityImpl.selectTask  - ==> Parameters: 30005(String)
