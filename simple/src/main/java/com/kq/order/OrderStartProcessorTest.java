@@ -28,7 +28,8 @@ public class OrderStartProcessorTest {
         RuntimeService runtimeService = processEngine.getRuntimeService();
         // 开始流程
 //        startProcess("order_process","order:2",runtimeService,identityService);
-        startProcess("order_process-condition-1","order:2",runtimeService,identityService);
+//        startProcess("order_process-condition-1","order:2",runtimeService,identityService);
+        startProcess("order_gateway_process","order:5",runtimeService,identityService);
 
 //        dealTask(processEngine);
 

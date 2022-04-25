@@ -39,12 +39,13 @@ public class OrderSubmitTest {
 
 
 
-        List<Task> submitTasks = taskService.createTaskQuery().processInstanceId("32501").taskCandidateOrAssigned("king").list();
+        List<Task> submitTasks = taskService.createTaskQuery().processInstanceId(ProcessorId.PORC_INST_ID).taskCandidateOrAssigned("king").list();
 //        Task submitTask = taskService.createTaskQuery().taskCandidateGroup("1").singleResult();
         for(Task task : submitTasks) {
             System.out.println(task.getId() + ":" + task.getTaskDefinitionKey());
 
-            taskService.complete(task.getId(), UserUtil.getUerMap("king","pay"));
+//            taskService.complete(task.getId(), UserUtil.getUerMap("king","pay"));
+            taskService.complete(task.getId(), UserUtil.getUerMap("king","cancel"));
 
         }
     }

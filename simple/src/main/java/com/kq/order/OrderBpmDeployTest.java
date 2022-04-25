@@ -22,7 +22,10 @@ public class OrderBpmDeployTest {
         RepositoryService repositoryService = processEngine.getRepositoryService();
 
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("processes/order.bpmn").deploy();
+                .addClasspathResource("order-gateway.bpmn").deploy();
+
+        System.out.println("deployment:"+deployment);
+
     }
 
 }

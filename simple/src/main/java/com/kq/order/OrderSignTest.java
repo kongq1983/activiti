@@ -43,7 +43,7 @@ public class OrderSignTest {
 //        List<Task> submitTasks = taskService.createTaskQuery().taskAssignee("admin").list();
 
         // 签收
-        List<Task> submitTasks =  taskService.createTaskQuery().processInstanceId("32501").taskCandidateOrAssigned("king").list();
+        List<Task> submitTasks =  taskService.createTaskQuery().processInstanceId(ProcessorId.PORC_INST_ID).taskCandidateOrAssigned("king").list();
         System.out.println("loadTask "+submitTasks);
 //        Task submitTask = taskService.createTaskQuery().taskCandidateGroup("1").singleResult();
 

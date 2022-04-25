@@ -27,6 +27,7 @@ public class UserUtil {
         map.put("candidateUsers", "test1,test2");
         map.put("candidateGroups", "group1,group2");
         map.put("outcome", StringUtils.trimToEmpty(outcome));
+        map.put("forward", StringUtils.trimToEmpty(outcome));
 
 
         return map;

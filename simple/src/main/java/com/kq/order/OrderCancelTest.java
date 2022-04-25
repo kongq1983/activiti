@@ -42,7 +42,7 @@ public class OrderCancelTest {
 //        List<Task> submitTasks = taskService.createTaskQuery().taskAssignee("admin").list();
 
         // 支付或取消
-        List<Task> submitTasks =  taskService.createTaskQuery().processInstanceId("5001").taskCandidateOrAssigned("king").list();
+        List<Task> submitTasks =  taskService.createTaskQuery().processInstanceId(ProcessorId.PORC_INST_ID).taskCandidateOrAssigned("king").list();
         System.out.println("loadTask "+submitTasks);
 //        Task submitTask = taskService.createTaskQuery().taskCandidateGroup("1").singleResult();
 
